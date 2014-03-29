@@ -1,71 +1,52 @@
-<!DOCTYPE html>
-<html>
+<!DOCTYPE HTML>
+<html lang="en" manifest="manifest.appcache">
   <head>
-    <meta charset='utf-8'>
-    <meta http-equiv="X-UA-Compatible" content="chrome=1">
-    <meta name="viewport" content="width=640" />
-
-    <link rel="stylesheet" href="stylesheets/core.css" media="screen"/>
-    <link rel="stylesheet" href="stylesheets/mobile.css" media="handheld, only screen and (max-device-width:640px)"/>
-    <link rel="stylesheet" href="stylesheets/pygment_trac.css"/>
-
-    <script type="text/javascript" src="javascripts/modernizr.js"></script>
-    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
-    <script type="text/javascript" src="javascripts/headsmart.min.js"></script>
-    <script type="text/javascript">
-      $(document).ready(function () {
-        $('#main_content').headsmart()
-      })
-    </script>
-    <title>Fishboy-html5 by ellisonleao</title>
+    <title>Fishboy</title>
+    <link rel="stylesheet" type="text/css" media="screen" href="css/index.css">
+    <meta id="viewport" name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta charset="UTF-8" />
+    <meta name="description" content=""/>
+    <meta name="keywords" content="game, html5, melonjs"/>
+    <meta name="robots" content="index, follow">
+    <meta property="og:image" content="" />
+    <meta property="og:title" content="Fishboy"/>
+    <meta property="og:url" content="http://ellisonleao.github.io/fishboy"/>
+    <meta property="og:site_name" content="Fishboy"/>
   </head>
 
   <body>
-    <a id="forkme_banner" href="https://github.com/ellisonleao/fishboy-html5">View on GitHub</a>
-    <div class="shell">
+    <div id="screen"></div>
+        <!-- melonJS Library -->
+    <script type="text/javascript" src="js/lib/melonJS-1.0.0-min.js" ></script>
+    <script type="text/javascript" src="build/game-min.js" ></script>
+    <!-- Bootstrap & Mobile optimization tricks -->
+    <script type="text/javascript">
+      window.onReady(function onReady() {
+        game.onload();
 
-      <header>
-        <span class="ribbon-outer">
-          <span class="ribbon-inner">
-            <h1>Fishboy-html5</h1>
-            <h2>HTML5 version of my fishboy game using MelonJS</h2>
-          </span>
-          <span class="left-tail"></span>
-          <span class="right-tail"></span>
-        </span>
-      </header>
+        // Mobile browser hacks
+        if (me.device.isMobile && !navigator.isCocoonJS) {
+          // Prevent the webview from moving on a swipe
+          window.document.addEventListener("touchmove", function (e) {
+            e.preventDefault();
+            window.scroll(0, 0);
+            return false;
+          }, false);
 
-      <section id="downloads">
-        <span class="inner">
-          <a href="https://github.com/ellisonleao/fishboy-html5/zipball/master" class="zip"><em>download</em> .ZIP</a><a href="https://github.com/ellisonleao/fishboy-html5/tarball/master" class="tgz"><em>download</em> .TGZ</a>
-        </span>
-      </section>
+          // Scroll away mobile GUI
+          (function () {
+            window.scrollTo(0, 1);
+            me.video.onresize(null);
+          }).defer();
 
+          me.event.subscribe(me.event.WINDOW_ONRESIZE, function (e) {
+            window.scrollTo(0, 1);
+          });
+        }
+      });
+    </script>
 
-      <span class="banner-fix"></span>
-
-
-      <section id="main_content">
-        <h1>
-<a name="fishboy-html5" class="anchor" href="#fishboy-html5"><span class="octicon octicon-link"></span></a>fishboy-html5</h1>
-
-<p>HTML5 version of my fishboy game</p>
-      </section>
-
-      <footer>
-        <span class="ribbon-outer">
-          <span class="ribbon-inner">
-            <p>this project by <a href="https://github.com/ellisonleao">ellisonleao</a> can be found on <a href="https://github.com/ellisonleao/fishboy-html5">GitHub</a></p>
-          </span>
-          <span class="left-tail"></span>
-          <span class="right-tail"></span>
-        </span>
-        <p>Generated with <a href="http://pages.github.com">GitHub Pages</a> using Merlot</p>
-        <span class="octocat"></span>
-      </footer>
-
-    </div>
-
-    
   </body>
 </html>

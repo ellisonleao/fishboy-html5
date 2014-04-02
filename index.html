@@ -1,5 +1,5 @@
 <!DOCTYPE HTML>
-<html lang="en" manifest="manifest.appcache">
+<html lang="en">
   <head>
     <title>Fishboy</title>
     <link rel="stylesheet" type="text/css" media="screen" href="css/index.css">
@@ -19,8 +19,12 @@
   <body>
     <div id="screen"></div>
         <!-- melonJS Library -->
-    <script type="text/javascript" src="js/lib/melonJS-1.0.0-min.js" ></script>
-    <script type="text/javascript" src="build/game-min.js" ></script>
+    <script type="text/javascript" src="//cdn.jsdelivr.net/melonjs/1.0.0b/melonJS.js" ></script>
+    <!-- <script type="text/javascript" src="build/game-min.js" ></script> -->
+    <script type="text/javascript" src="js/game.js" ></script>
+    <script type="text/javascript" src="js/resources.js" ></script>
+    <script type="text/javascript" src="js/screens/play.js" ></script>
+
     <!-- Bootstrap & Mobile optimization tricks -->
     <script type="text/javascript">
       window.onReady(function onReady() {

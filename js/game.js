@@ -18,6 +18,12 @@ var game = {
   "loaded": function() {
     me.state.set(me.state.PLAY, new game.PlayScreen());
 
+    me.pool.register("boy", BoyEntity);
+
+    //enable keyboard
+    me.input.bindKey(me.input.KEY.LEFT,  "left");
+    me.input.bindKey(me.input.KEY.RIGHT, "right");
+ 
     // in melonJS 1.0.0, viewport size is set to Infinity by default
     me.game.viewport.setBounds(0, 0, 480, 320);
     me.state.change(me.state.PLAY);

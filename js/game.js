@@ -14,6 +14,13 @@ var game = {
     me.loader.onload = this.loaded.bind(this);
     me.loader.preload(game.resources);
     me.state.change(me.state.LOADING);
+    
+    if (document.location.hash === "#debug") {
+        window.onReady(function () {
+            me.plugin.register.defer(this, debugPanel, "debug");
+        });
+    }
+
   },
 
   "loaded": function() {

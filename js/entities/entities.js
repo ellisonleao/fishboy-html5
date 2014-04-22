@@ -11,8 +11,9 @@ var BoyEntity = me.ObjectEntity.extend({
     //this.renderable.addAnimation("running", [0, 1, 2]);
     this.renderable.addAnimation("idle", [0]);
     this.renderable.setCurrentAnimation("idle");
-    this.maxPos = me.game.viewport.width - settings.width;
-    this.minPos = settings.width;
+    this.setVelocity(4, 0);
+    this.setFriction(1, 0);
+    this.setMaxVelocity(10, 0);
   },
 
   update: function(dt) {
@@ -20,20 +21,18 @@ var BoyEntity = me.ObjectEntity.extend({
     if (me.input.isKeyPressed('left')){
         this.renderable.flipX(true);
         //move left
-        this.pos.x -= dt;  
-        if (this.pos.x < this.minPos){
-            this.pos.x = this.renderable.width;
-        }
+        this.pos.x -= this.accel.x * me.timer.tick;  
     }
 
     if (me.input.isKeyPressed('right')){
         this.renderable.flipX(false);
         //move right
-        this.pos.x +=  dt;  
-        if (this.pos.x > this.maxPos){
-            this.pos.x = this.maxPos;
-        }
+        this.pos.x += this.accel.x * me.timer.tick;  
     }
+
+    // clamp
+    var vp = me.game.viewport;
+    this.pos.x = this.pos.x.clamp(vp.left, vp.right - this.width);
 
     return this.parent(dt);
   },
